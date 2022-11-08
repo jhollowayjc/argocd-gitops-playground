@@ -1,0 +1,19 @@
+{{- if and (.Values.argoCd) (.Values.argoCd.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-cd
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+    path: add-ons/env/{{ include ".environment" . }}/argo-cd
+    targetRevision: {{ .Values.targetRevision }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy: {{ include ".syncPolicy" . | indent 4 }}
+{{- end -}}

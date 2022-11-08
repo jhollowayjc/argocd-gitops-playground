@@ -1,0 +1,12 @@
+clusterName: "local-dev"
+targetRevision: "HEAD"
+
+# disable auto-sync allows us to perform local syncs via the argocd cli
+# this is only useful for local-dev since other environments should track a remote revision
+disableAutoSync: true 
+
+argoCd:
+  enable: true
+
+argoRollouts:
+  enable: true

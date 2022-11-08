@@ -1,0 +1,19 @@
+{{- if and (.Values.argoRollouts) (.Values.argoRollouts.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+    path: add-ons/env/{{ include ".environment" . }}/argo-rollouts
+    targetRevision: {{ .Values.targetRevision }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-rollouts
+  syncPolicy: {{ include ".syncPolicy" . | indent 4 }}
+{{- end -}}
