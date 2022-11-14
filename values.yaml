@@ -1,0 +1,3 @@
+repoUrl: 'https://github.com/jhollowayjc/argocd-gitops-playground.git'
+targetRevision: HEAD
+

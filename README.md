@@ -33,7 +33,7 @@ open http://127.0.0.1:8443
 
 ### Have argo-cd install everything else 
 ```
-helm install local-dev chart/env/local-dev
+helm install gitops --set environment=local-dev 
 ```
 
 ### Sync changes from local path
