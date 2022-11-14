@@ -9,6 +9,11 @@ spec:
         repoURL: {{ .Values.repoUrl }}
         revision: {{ .Values.targetRevision }}
         directories:
+        - path: add-ons/env/_global/*
+    - git:
+        repoURL: {{ .Values.repoUrl }}
+        revision: {{ .Values.targetRevision }}
+        directories:
         - path: add-ons/env/{{ required "A valid environment is required!" .Values.environment }}/*
   template:
     metadata:
