@@ -10,6 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/AlexsJones/cats
+    path: .
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
