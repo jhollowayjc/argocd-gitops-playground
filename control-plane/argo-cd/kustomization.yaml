@@ -1,0 +1,6 @@
+---
+namespace: argocd
+resources:
+- ./namespace.yaml
+- https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.2/manifests/ha/install.yaml
+- app.yaml

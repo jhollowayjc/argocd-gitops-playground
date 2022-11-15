@@ -5,9 +5,9 @@ Experimenting local development workflows when doing GitOps and using argo-cd.
 ## Local development 
 
 **Dependencies:**
-- `helm`
 - `minikube`
 - `kubectl`
+- `helm` (optional)
 
 ### Start a cluster
 ```
@@ -16,12 +16,7 @@ minikube start
 
 ### Bootstrap argo-cd install
 ```
-helm install argo-cd add-ons/env/_global/argocd --create-namespace --dependency-update --namespace=argocd
-```
-
-### Install everything else via Argo
-```
-helm install gitops ./ --set environment=local-dev
+kubectl apply -k ./control-plane
 ```
 
 ### Get initial admin password
