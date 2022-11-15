@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
-name: add-ons
-description: App of Apps for Kubernetes Cluster add-ons
+name: argo-rollouts
+description: A Helm chart for Argo Rollouts
 
 # Application charts are a collection of templates that can be packaged into versioned archives
 # to be deployed.
@@ -14,3 +14,8 @@ version: 0.1.0
 # Version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
 appVersion: "1.0"
+
+dependencies:
+- name: argo-rollouts
+  version: 2.21.0
+  repository: https://argoproj.github.io/argo-helm

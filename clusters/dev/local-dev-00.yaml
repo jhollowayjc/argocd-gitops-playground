@@ -1,0 +1,5 @@
+
+clusterName: local-dev-00
+
+argocd:
+  namespace: argocd

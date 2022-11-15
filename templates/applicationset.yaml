@@ -1,20 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons
+  name: cluster-apps
   namespace: argocd
 spec:
   generators:
     - git:
         repoURL: {{ .Values.repoUrl }}
         revision: {{ .Values.targetRevision }}
-        directories:
-        - path: add-ons/env/_global/*
-    - git:
-        repoURL: {{ .Values.repoUrl }}
-        revision: {{ .Values.targetRevision }}
-        directories:
-        - path: add-ons/env/{{ required "A valid environment is required!" .Values.environment }}/*
+        files:
+        - path: clusters/**/*.yaml
   template:
     metadata:
       name: '{{`{{path.basename}}`}}'
@@ -42,4 +37,3 @@ spec:
             duration: 5s
             factor: 2
             maxDuration: 1m
-
