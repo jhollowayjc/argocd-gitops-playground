@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-addons
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+        revision: refactor
+        files:
+        - path: add-ons/*
+  template:
+    metadata:
+      name: '{{`{{path.basename}}`}}'
+    spec:
+      project: default
+      source:
+        path: '{{`{{path}}`}}'
+        repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+        targetRevision: refactor
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{`{{path.basename}}`}}'
+      syncPolicy:
+        automated: {}
+      syncOptions:
+        - CreateNamespace=true
+
