@@ -10,7 +10,7 @@ spec:
       repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
       revision: refactor
       directories:
-      - path: add-ons
+      - path: control-plane/add-ons/*
   template:
     metadata:
       name: '{{path.basename}}'
@@ -21,7 +21,7 @@ spec:
         targetRevision: refactor
         path: '{{path}}'
       destination:
-        server: http://kubernetes.default.svc
+        server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
       syncPolicy:
         automated:
