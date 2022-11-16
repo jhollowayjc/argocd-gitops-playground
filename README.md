@@ -16,7 +16,6 @@ minikube start
 
 ### Bootstrap argo-cd install
 ```
-kubectl apply -k ./bootstrap/overlays/<env>
 kubectl apply -k ./control-plane/overlays/<env>
 ```
 

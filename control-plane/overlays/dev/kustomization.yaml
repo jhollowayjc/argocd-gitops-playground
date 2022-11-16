@@ -1,2 +1,12 @@
+namespace: argocd
 resources:
 - ../../base/
+
+patches:
+- patch: |-
+    - op: replace
+      path: /spec/source/path
+      value: bootstrap/overlays/dev
+  target:
+    kind: Application
+    name: control-plane-root
