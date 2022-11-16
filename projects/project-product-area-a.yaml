@@ -29,7 +29,7 @@ spec:
       repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
       revision: 'refactor'
       directories:
-      - path: workloads/product-area-a/*
+      - path: workloads/product-area-a/apps/*
       requeueAfterSeconds: 20
   template:
     metadata:

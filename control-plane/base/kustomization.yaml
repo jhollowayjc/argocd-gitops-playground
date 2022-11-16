@@ -3,3 +3,4 @@ namespace: argocd
 resources:
 - ./namespace.yaml
 - ./addons.yaml
+- ./projects.yaml
