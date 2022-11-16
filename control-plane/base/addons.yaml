@@ -1,0 +1,33 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: control-plane-addons
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # make sure crds synced after
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+      revision: main
+      directories:
+      - path: control-plane/add-ons/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

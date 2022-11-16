@@ -16,12 +16,7 @@ minikube start
 
 ### Bootstrap argo-cd install
 ```
-helm install argo-cd add-ons/env/_global/argocd --create-namespace --dependency-update --namespace=argocd
-```
-
-### Install everything else via Argo
-```
-helm install gitops ./ --set environment=local-dev
+kubectl apply -k ./control-plane/overlays/<env>
 ```
 
 ### Get initial admin password
@@ -36,18 +31,7 @@ argocd login 127.0.0.1:8443
 open http://127.0.0.1:8443
 ```
 
-### Have argo-cd install everything else 
-```
-helm install gitops --set environment=local-dev 
-```
-
 ### Sync changes from local path
 ```
 argocd app sync <app> --local ./add-ons/env/local-dev/<app>
 ```
-
-
-## New environments
-
-To add a new environment, create a directory under `env/` e.g. `env/stg` for the `environment=stg`.
-
