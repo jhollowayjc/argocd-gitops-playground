@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: control-plane-product-area-apps
+  name: product-areas-apps
   namespace: argocd
 spec:
   generators:
@@ -13,16 +13,16 @@ spec:
       - path: product-areas/**/project.yaml
   template:
     metadata:
-      name: 'product-area-{{name}}'
+      name: 'product-area-{{path.basename}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
         targetRevision: refactor
-        path: control-plane/add-ons/argo-apps
+        path: product-areas
         helm:
           valueFiles:
-          - '{{path}}'
+            - '{{path}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: argocd

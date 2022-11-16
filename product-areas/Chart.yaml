@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
-name: argo-apps
-description: A Helm chart for Argo Apps
+name: product-areas
+description: A Helm chart for configuring workloads to be configured in argo
 type: application
 version: 0.1.0
 appVersion: "1.0"
