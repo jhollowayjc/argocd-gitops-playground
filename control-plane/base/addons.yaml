@@ -4,8 +4,6 @@ kind: ApplicationSet
 metadata:
   name: control-plane-addons
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "2" # make sure crds synced after
 spec:
   generators:
   - git:

@@ -1,4 +1,2 @@
-namespace: argocd
 resources:
 - ../../base/
--  https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.2/manifests/install.yaml
