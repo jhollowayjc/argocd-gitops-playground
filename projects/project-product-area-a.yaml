@@ -37,7 +37,7 @@ spec:
       namespace: argocd
     spec:
       destination:
-        namespace: 'product-area-a'
+        namespace: '{{path.basename}}'
         server: 'https://kubernetes.default.svc'
       project: product-area-a
       source:
