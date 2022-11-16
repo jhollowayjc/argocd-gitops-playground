@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
     targetRevision: main
-    path: bootstrap/base
+    path: control-plane/default
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

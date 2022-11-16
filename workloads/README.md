@@ -1,3 +1,5 @@
 # workloads
 
-!! these should probably be separate repos !!
+!! each subdirectory should probably be separate repos !!
+
+

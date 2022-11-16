@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: workloads
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+        revision: HEAD
+        directories:
+          - path: workloads/app**
+  template:
+    metadata:
+      name: 'workload-{{path.basename}}'
+    spec:
+      destination:
+        namespace: workloads-{{path.basename}}
+        server: 'https://kubernetes.default.svc'
+      source:
+        path: '{{path}}'
+        repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+        targetRevision: HEAD
+        plugin:
+          name: argocd-lovely-plugin
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - PrunePropagationPolicy=background
+          - CreateNamespace=true
