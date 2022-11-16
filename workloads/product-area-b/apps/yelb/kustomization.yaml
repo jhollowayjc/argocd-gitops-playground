@@ -1,4 +1,0 @@
----
-namespace: yelb
-resources:
-- https://github.com/lamw/vmware-k8s-app-demo/blob/master/yelb.yaml
