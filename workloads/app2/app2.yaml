@@ -7,7 +7,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/redhat-developer-demos/openshift-gitops-example
+        repoURL: https://github.com/redhat-developer-demos/openshift-gitops-examples
         revision: HEAD
         directories:
           - path: apps/*
@@ -20,7 +20,7 @@ spec:
         server: 'https://kubernetes.default.svc'
       source:
         path: '{{path}}'
-        repoURL: https://github.com/redhat-developer-demos/openshift-gitops-example
+        repoURL: https://github.com/redhat-developer-demos/openshift-gitops-examples
         targetRevision: HEAD
         plugin:
           name: argocd-lovely-plugin
