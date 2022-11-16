@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: cluster-addons
+  name: project-apps
   namespace: argocd
 spec:
   generators:
@@ -10,10 +10,10 @@ spec:
         repoURL: 'https://github.com/jhollowayjc/argocd-gitops-playground'
         revision: 'refactor'
         directories:
-        - path: 'add-ons/*'
+        - path: 'apps/*'
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: 'project-x-{{path.basename}}'
     spec:
       project: default
       source:

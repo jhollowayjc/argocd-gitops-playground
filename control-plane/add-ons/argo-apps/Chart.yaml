@@ -1,11 +1,11 @@
 ---
 apiVersion: v2
-name: argo-rollouts
-description: A Helm chart for Argo Rollouts
+name: argo-apps
+description: A Helm chart for Argo Apps
 type: application
 version: 0.1.0
 appVersion: "1.0"
 dependencies:
-- name: argo-rollouts
-  version: 2.21.0
+- name: argocd-apps
+  version: 0.0.3
   repository: https://argoproj.github.io/argo-helm

@@ -1,0 +1,52 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: product-area-a
+  namespace: argocd
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  description: project for product-area-a resources
+  destinations:
+  - namespace: '*'
+    server: '*'
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  sourceRepos:
+    - '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: project-product-area-a
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+      revision: 'refactor'
+      directories:
+      - path: workloads/product-area-a/*
+      requeueAfterSeconds: 20
+  template:
+    metadata:
+      name: 'workload-{{path.basename}}'
+      namespace: argocd
+    spec:
+      destination:
+        namespace: 'product-area-a'
+        server: 'https://kubernetes.default.svc'
+      project: product-area-a
+      source:
+        path: '{{ path }}'
+        repoURL: https://github.com/jhollowayjc/argocd-gitops-playground
+        targetRevision: 'refactor'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
